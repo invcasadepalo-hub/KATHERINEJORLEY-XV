@@ -1,15 +1,13 @@
-ARCHIVOS PARA GITHUB PAGES — KATHERINE JORLEY
+ITINERARIO XV — ARCHIVOS PARA GITHUB
 
-Sube estos dos archivos a la raíz del repositorio:
-1. index.html
-2. sobre.png
+Sube todos estos archivos juntos a la raíz del repositorio:
+- itinerario.html
+- icono_iglesia.png
+- icono_arco.png
+- icono_quinceanera.png
+- icono_banquete.png
+- icono_pastel.png
 
-No cambies el nombre de sobre.png porque el HTML lo busca con ese nombre.
-
-Funcionamiento:
-- Se muestra el sobre.
-- Al tocar el sello dorado aparecen destellos dorados durante unos segundos.
-- Después abre la invitación:
-  https://sites.google.com/view/katherinejorley/home
-
-En GitHub, reemplaza los archivos anteriores por estos dos y confirma los cambios.
+No reemplaces index.html: ese archivo sigue siendo tu sobre animado.
+Enlace al itinerario:
+https://invcasadepalo-hub.github.io/KATHERINEJORLEY-XV/itinerario.html
