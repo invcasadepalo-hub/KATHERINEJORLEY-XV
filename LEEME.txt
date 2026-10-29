@@ -1,0 +1,15 @@
+ARCHIVOS PARA GITHUB PAGES — KATHERINE JORLEY
+
+Sube estos dos archivos a la raíz del repositorio:
+1. index.html
+2. sobre.png
+
+No cambies el nombre de sobre.png porque el HTML lo busca con ese nombre.
+
+Funcionamiento:
+- Se muestra el sobre.
+- Al tocar el sello dorado aparecen destellos dorados durante unos segundos.
+- Después abre la invitación:
+  https://sites.google.com/view/katherinejorley/home
+
+En GitHub, reemplaza los archivos anteriores por estos dos y confirma los cambios.

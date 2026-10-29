@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katherine Jorley | XV Años</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #210607;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+    }
+    .scene {
+      position: relative;
+      width: min(100vw, 66.6667dvh);
+      height: min(100dvh, 150vw);
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .envelope {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .seal-button {
+      position: absolute;
+      left: 50%;
+      top: 49.5%;
+      width: 22%;
+      height: 13%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .seal-button:focus-visible {
+      outline: 2px solid #f6d889;
+      outline-offset: 4px;
+    }
+    .hint {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      text-align: center;
+      color: #f3d99b;
+      font: 14px/1.4 Georgia, serif;
+      letter-spacing: .08em;
+      text-shadow: 0 1px 8px #000;
+      pointer-events: none;
+      opacity: .92;
+    }
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 5;
+      display: none;
+    }
+    .sparkles.active { display: block; }
+    .spark {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--s);
+      height: var(--s);
+      background: #ffe7a0;
+      border-radius: 50%;
+      box-shadow: 0 0 6px 2px #e6b84f, 0 0 18px 5px rgba(255, 205, 91, .65);
+      animation: sparkle var(--d) ease-in-out forwards;
+      opacity: 0;
+    }
+    .spark::before, .spark::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff1bf;
+      border-radius: 2px;
+    }
+    .spark::before { width: 2px; height: calc(var(--s) * 3.6); }
+    .spark::after { height: 2px; width: calc(var(--s) * 3.6); }
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(.2) rotate(0deg); }
+      25% { opacity: 1; transform: scale(1) rotate(45deg); }
+      70% { opacity: .9; transform: scale(.7) rotate(90deg); }
+      100% { opacity: 0; transform: scale(.1) rotate(135deg); }
+    }
+    .scene.opening { animation: glow 1.7s ease-in-out forwards; }
+    @keyframes glow {
+      0%, 100% { filter: brightness(1); }
+      35% { filter: brightness(1.16) sepia(.12); }
+      65% { filter: brightness(1.06); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .scene.opening { animation-duration: .2s; }
+      .spark { animation-duration: .4s !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene" id="scene" aria-label="Sobre de invitación">
+    <img class="envelope" src="sobre.png" alt="Sobre de terciopelo color vino con sello dorado">
+    <button class="seal-button" id="openSeal" aria-label="Abrir invitación tocando el sello"></button>
+  </main>
+  <div class="hint" id="hint">Toca el sello para abrir la invitación</div>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+  <script>
+    (() => {
+      const destination = "https://sites.google.com/view/katherinejorley/home";
+      const button = document.getElementById("openSeal");
+      const scene = document.getElementById("scene");
+      const sparkleLayer = document.getElementById("sparkles");
+      const hint = document.getElementById("hint");
+      let opened = false;
+
+      function createSparkles() {
+        sparkleLayer.innerHTML = "";
+        const count = 44;
+        for (let i = 0; i < count; i++) {
+          const spark = document.createElement("span");
+          spark.className = "spark";
+          spark.style.setProperty("--x", (Math.random() * 100) + "vw");
+          spark.style.setProperty("--y", (Math.random() * 100) + "vh");
+          spark.style.setProperty("--s", (2 + Math.random() * 4) + "px");
+          spark.style.setProperty("--d", (0.8 + Math.random() * 1.4) + "s");
+          spark.style.animationDelay = (Math.random() * 0.45) + "s";
+          sparkleLayer.appendChild(spark);
+        }
+        sparkleLayer.classList.add("active");
+      }
+
+      button.addEventListener("click", () => {
+        if (opened) return;
+        opened = true;
+        button.disabled = true;
+        hint.textContent = "✨";
+        scene.classList.add("opening");
+        createSparkles();
+        window.setTimeout(() => {
+          window.location.href = destination;
+        }, 2300);
+      });
+    })();
+  </script>
+</body>
+</html>
