@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#520711"><title>Katherine Jorley · Mis XV Años</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#3b040c}
+.scene{position:relative;width:100%;height:100svh;min-height:480px;overflow:hidden;perspective:1400px;background:#4b0712}
+.base,.flap{position:absolute;inset:0;width:100%;height:100%;background-position:center;background-size:100% 100%;background-repeat:no-repeat}
+.base{background-image:url("sobre-base.jpg")}
+.flap{background-image:url("solapa.png");transform-origin:50% 0%;transform-style:preserve-3d;transition:transform 3s cubic-bezier(.45,.02,.18,1),opacity .45s ease 2.55s;backface-visibility:visible;z-index:2}
+.seal-hit{position:absolute;z-index:5;left:50%;top:44%;width:min(29vw,220px);height:min(29vw,220px);min-width:112px;min-height:112px;transform:translate(-50%,-50%);border:0;border-radius:50%;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.seal-hit:focus-visible{outline:2px solid #f3d98c;outline-offset:5px}
+.hint{position:absolute;z-index:6;left:0;right:0;top:calc(44% + min(16vw,112px));text-align:center;padding:0 16px;color:#f4dfaa;font:clamp(10px,2.5vw,14px)/1.5 Georgia,serif;letter-spacing:.16em;text-transform:uppercase;text-shadow:0 2px 8px #220208;transition:opacity .35s ease}
+.hint:after{content:"";display:block;width:60px;height:1px;margin:10px auto 0;background:#d8b66c}
+.scene.opening .flap{transform:rotateX(180deg);opacity:.08;pointer-events:none}
+.scene.opening .seal-hit{pointer-events:none}.scene.opening .hint{opacity:0}
+@media(prefers-reduced-motion:reduce){.flap{transition-duration:.2s}}
+</style></head>
+<body><main class="scene" id="scene" aria-label="Sobre de invitación de Katherine Jorley">
+<div class="base" aria-hidden="true"></div><div class="flap" aria-hidden="true"></div>
+<button class="seal-hit" id="openSeal" aria-label="Tocar el sello para abrir la invitación"></button>
+<div class="hint">Toca el sello para abrir tu invitación</div></main>
+<script>
+(()=>{const scene=document.getElementById('scene'),button=document.getElementById('openSeal');let started=false;
+button.addEventListener('click',()=>{if(started)return;started=true;scene.classList.add('opening');setTimeout(()=>{window.location.href='https://sites.google.com/view/katherinejorley/home'},3000)});
+})();
+</script></body></html>
